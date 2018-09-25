@@ -11738,7 +11738,7 @@ input[type="button"].btn-block {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
-  width: 100%;
+  width: 70%;
 }
 
 .input-group > .form-control,
