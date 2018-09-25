@@ -1,6 +1,30 @@
+function makeTemplates() {
+    var templateName = '';
+    $('script[type="text/x-jsrender"]').each(function(index, item) {
+        templateName = $(item).attr("id");
+        //console.log("TEMPLATE:" + templateName.replace("Template", ""));
+        //$.templates(templateName.replace("Template", ""), $(item).html());
+        $(item).attr('id', templateName.replace("Template", ""));
+    });
+}
+
+function rb(element, template, data, helpers, button, cb, rcb) {
+    render(element, template, data, helpers, function() {
+        if (rcb)
+            rcb(button);
+        bind(element + ' ' + button, function() {
+            var view = $.view(this);
+            var r = view.data;
+            cb($(this), r);
+            //logClicks();
+        });
+		
+		
 (function($) {
   'use strict';
   $(function() {
+	makeTemplates();
+	rb('row', 'table', 'data');
     Chart.defaults.global.legend.labels.usePointStyle = true;
     
     if ($("#serviceSaleProgress").length) {
